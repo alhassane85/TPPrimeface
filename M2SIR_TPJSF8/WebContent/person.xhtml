@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"  
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
@@ -64,10 +64,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><h:commandButton
-						action="#{personService.addPerson(person)}" value="Add Person"></h:commandButton>
-				</td>
-			</tr>
+				<td colspan="2"><p:commandButton
+						action="#{personService.addPerson(person)}" value="Add Person"
+						icon="ui-icon-check" style="margin:0"></p:commandButton></td>
+						</tr>
 
 		</table>
 
@@ -77,28 +77,38 @@
 
 
 
-	
-	
-	
+
+
+
 	<h:form id="form">
-    <p:dataTable var="car" value="#{personService.listPersons}" paginator="true" rows="10"
-                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                 rowsPerPageTemplate="5,10,15"   id="carTable" >
-        <p:ajax event="rowSelect"  />
-        <p:column headerText="Id" sortBy="#{car.id}" filterBy="#{car.id}">
-            <h:outputText value="#{car.id}" />
-        </p:column>
-        <p:column headerText="Name" sortBy="#{car.name}" filterBy="#{car.name}">
-            <h:outputText value="#{car.name}" />
-        </p:column>
-        <p:column headerText="Country" sortBy="#{car.country}" filterBy="#{car.country}">
-            <h:outputText value="#{car.country}" />
-        </p:column>
-        
-    </p:dataTable>
- 
-    
-</h:form>
+		<p:dataTable var="car" value="#{personService.listPersons}"
+			paginator="true" rows="10"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="5,10,15" id="carTable">
+			<p:ajax event="rowSelect" />
+			<p:column headerText="Id" sortBy="#{car.id}" filterBy="#{car.id}">
+				<h:outputText value="#{car.id}" />
+			</p:column>
+
+			<p:column headerText="Name" sortBy="#{car.name}"
+				filterBy="#{car.name}">
+				<h:outputText value="#{car.name}" />
+			</p:column>
+			<p:column headerText="Country" sortBy="#{car.country}"
+				filterBy="#{car.country}">
+				<h:outputText value="#{car.country}" />
+			</p:column>
+			<p:column headerText="Operation" sortBy="" filterBy="">
+				<p:commandButton action="#{personService.detailPerson(person)}"
+					value="Details" icon="ui-icon-search"></p:commandButton>
+				<p:commandButton action="#{personService.editPerson(person)}"
+					icon="ui-icon-pencil" value="Edit"></p:commandButton>
+
+				<p:commandButton action="#{personService.deletePerson(person)}"
+					icon="ui-icon-cancel" value="Delete"></p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
 
 
 </h:body>

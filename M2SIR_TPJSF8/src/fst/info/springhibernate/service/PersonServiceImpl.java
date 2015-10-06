@@ -35,5 +35,20 @@ public class PersonServiceImpl implements PersonService,Serializable{
     public List<Person> getlistPersons() {
         return this.personDAO.listPersons();
     }
- 
+    @Override
+	public void editPerson(Person p) {
+    	 this.personDAO.editPerson(p);
+	}
+
+	@Override
+	public void detailPerson(Person p) {
+		this.personDAO.detailPerson(p);
+		
+	}
+
+	@Override
+	public void deletePerson(Person p) {
+		this.personDAO.deletePerson(p);
+		
+	}
 }

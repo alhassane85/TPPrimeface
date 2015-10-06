@@ -8,5 +8,8 @@ public interface PersonService {
  
     public void addPerson(Person p);
     public List<Person> getlistPersons();
+    public void editPerson(Person p);
+    public void detailPerson(Person p);
+    public void deletePerson(Person p);
      
 }

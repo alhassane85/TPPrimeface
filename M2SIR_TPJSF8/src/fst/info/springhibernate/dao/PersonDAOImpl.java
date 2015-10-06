@@ -36,5 +36,23 @@ public class PersonDAOImpl implements PersonDAO{
         }
         return personsList;
     }
+
+	@Override
+	public void editPerson(Person p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void detailPerson(Person p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deletePerson(Person p) {
+		// TODO Auto-generated method stub
+		
+	}
  
 }
