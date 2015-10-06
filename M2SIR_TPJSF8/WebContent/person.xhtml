@@ -67,7 +67,7 @@
 				<td colspan="2"><p:commandButton
 						action="#{personService.addPerson(person)}" value="Add Person"
 						icon="ui-icon-check" style="margin:0"></p:commandButton></td>
-						</tr>
+			</tr>
 
 		</table>
 
@@ -99,17 +99,16 @@
 				<h:outputText value="#{car.country}" />
 			</p:column>
 			<p:column headerText="Operation" sortBy="" filterBy="">
-				<p:commandButton action="#{personService.detailPerson(person)}"
-					value="Details" icon="ui-icon-search"></p:commandButton>
+				<p:commandButton action="#{personService.detailPerson(person)}" value="Details"
+					icon="ui-icon-search"></p:commandButton>
 				<p:commandButton action="#{personService.editPerson(person)}"
 					icon="ui-icon-pencil" value="Edit"></p:commandButton>
 
 				<p:commandButton action="#{personService.deletePerson(person)}"
-					icon="ui-icon-cancel" value="Delete"></p:commandButton>
+					icon="ui-icon-delete" value="Delete"></p:commandButton>
 			</p:column>
 		</p:dataTable>
 	</h:form>
-
 
 </h:body>
 </html>
