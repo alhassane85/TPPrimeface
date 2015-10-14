@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>fst.info.springhibernate</groupId>
-  <artifactId>M2SIR_TPJSF8</artifactId>
+  <groupId>M2SIR_TPJSF9_Projet</groupId>
+  <artifactId>M2SIR_TPJSF9_Projet</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <repositories>
@@ -36,6 +36,12 @@
 	</properties>
 
 	<dependencies>
+		<!-- Validation -->
+		<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-validator</artifactId>
+	<version>5.2.1.Final</version>
+	</dependency>
 		<!-- Spring and Transactions -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -57,12 +63,6 @@
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
-		</dependency>
-		<!-- Primefaces library -->
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>5.0</version>
 		</dependency>
 		<!-- AspectJ -->
 		<dependency>
@@ -112,7 +112,12 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>${jsf.version}</version>
 		</dependency>
-
+		<!-- Primefaces library -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>3.1.1</version>
+		</dependency>
 		<!-- Logging with SLF4J & LogBack -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -157,8 +162,28 @@
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Tiles -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-api</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+            <version>2.1.2</version>
+        </dependency>
 	</dependencies>
-  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -166,8 +191,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>

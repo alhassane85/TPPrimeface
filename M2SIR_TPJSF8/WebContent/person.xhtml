@@ -64,9 +64,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><p:commandButton
-						action="#{personService.addPerson(person)}" value="Add Person"
-						icon="ui-icon-check" style="margin:0"></p:commandButton></td>
+				<td colspan="2"><h:commandButton
+						action="#{personService.addPerson(person)}" value="Add Person"></h:commandButton>
+				</td>
 			</tr>
 
 		</table>
@@ -81,34 +81,73 @@
 
 
 	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+		<p:remoteCommand name="onCellEdit"
+			action="#{personService.onCellEdit}" update=":form:msgs" />
+
 		<p:dataTable var="car" value="#{personService.listPersons}"
 			paginator="true" rows="10"
-			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-			rowsPerPageTemplate="5,10,15" id="carTable">
-			<p:ajax event="rowSelect" />
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink}
+                  {CurrentPageReport} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="5,10,15" editable="true">
+			<f:facet name="header">
+            Liste des personnes
+        </f:facet>
+
+
+<!-- 			<p:ajax event="rowEdit" listener="#{personService.onRowEdit}" -->
+<!-- 				immediate="true" update=":form:msgs" /> -->
+			<p:ajax event="rowEdit" oncomplete="onCellEdit()"  />
+<!-- 			<p:ajax event="cellEdit" listener="#{personService.onCellEdit}" -->
+<!-- 				immediate="true" update=":form:msgs" /> -->
+			<p:ajax event="rowEditCancel" listener="#{personService.onRowCancel}"
+				update=":form:msgs" />
+
+
 			<p:column headerText="Id" sortBy="#{car.id}" filterBy="#{car.id}">
-				<h:outputText value="#{car.id}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{car.id}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput" value="#{car.id}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Name" sortBy="#{car.name}"
 				filterBy="#{car.name}">
-				<h:outputText value="#{car.name}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{car.name}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInputName" value="#{car.name}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
+
 			<p:column headerText="Country" sortBy="#{car.country}"
 				filterBy="#{car.country}">
-				<h:outputText value="#{car.country}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{car.country}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInputCountry" value="#{car.country}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
-			<p:column headerText="Operation" sortBy="" filterBy="">
-				<p:commandButton action="#{personService.detailPerson(person)}" value="Details"
-					icon="ui-icon-search"></p:commandButton>
-				<p:commandButton action="#{personService.editPerson(person)}"
-					icon="ui-icon-pencil" value="Edit"></p:commandButton>
-
-				<p:commandButton action="#{personService.deletePerson(person)}"
-					icon="ui-icon-delete" value="Delete"></p:commandButton>
+			<p:column style="width:32px">
+				<p:rowEditor />
 			</p:column>
 		</p:dataTable>
+
+
 	</h:form>
+
 
 </h:body>
 </html>

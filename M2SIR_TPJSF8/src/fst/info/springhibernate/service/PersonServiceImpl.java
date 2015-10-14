@@ -3,9 +3,12 @@ package fst.info.springhibernate.service;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
+import javax.faces.context.FacesContext;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +21,10 @@ import fst.info.springhibernate.model.Person;
 @SessionScoped
 public class PersonServiceImpl implements PersonService,Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PersonDAO personDAO;
 	 
     public void setPersonDAO(PersonDAO personDAO) {
@@ -36,19 +43,30 @@ public class PersonServiceImpl implements PersonService,Serializable{
         return this.personDAO.listPersons();
     }
     @Override
-	public void editPerson(Person p) {
-    	 this.personDAO.editPerson(p);
-	}
+    public void onRowEdit(RowEditEvent event) {
+    	Person p=(Person)event.getObject();
+        FacesMessage msg = new FacesMessage("Personne modifée", ((Person) event.getObject()).getName());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+    }
+    @Override
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage(" Modification annulée", ((Person) event.getObject()).getName());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    @Override
+    public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+        System.out.println("old = "+oldValue);
+        System.out.println("new = "+newValue);
+     
+        if(newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
 
-	@Override
-	public void detailPerson(Person p) {
-		this.personDAO.detailPerson(p);
-		
-	}
-
-	@Override
-	public void deletePerson(Person p) {
-		this.personDAO.deletePerson(p);
-		
-	}
+	
+ 
 }
