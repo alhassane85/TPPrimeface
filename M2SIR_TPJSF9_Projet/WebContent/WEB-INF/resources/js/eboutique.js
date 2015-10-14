@@ -1,3 +1,0 @@
-function affichePanier(){
-$("#panier").toggle();
-}
