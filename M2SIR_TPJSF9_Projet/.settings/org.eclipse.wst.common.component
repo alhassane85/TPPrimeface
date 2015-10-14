@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="M2SIR_TPJSF9_Projet">
+    <wb-module deploy-name="ProjetduNar">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="M2SIR_TPJSF9_Projet"/>
-        <property name="java-output-path" value="/M2SIR_TPJSF9_Projet/build/classes"/>
+        <property name="java-output-path" value="/ProjetduNar/build/classes"/>
+        <property name="context-root" value="ProjetduNar"/>
     </wb-module>
 </project-modules>
